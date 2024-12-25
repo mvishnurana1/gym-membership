@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "GymManagement.Api.Controllers.SubscriptionsController",
+    "Method": "CreateSubscription",
+    "RelativePath": "Subscriptions",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "GymManagement.Contracts.Subscriptions.CreateSubscriptionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
