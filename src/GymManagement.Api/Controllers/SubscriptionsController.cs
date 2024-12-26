@@ -2,6 +2,8 @@
 using GymManagement.Contracts.Subscriptions;
 using Microsoft.AspNetCore.Mvc;
 using GymManagement.Application.Commands.CreateSubscription;
+using GymManagement.Domain.Subscriptions;
+using GymManagement.Application.Queries.GetSubscription;
 
 namespace GymManagement.Api.Controllers
 {
@@ -29,6 +31,22 @@ namespace GymManagement.Api.Controllers
 
             return createSubscriptionResult.MatchFirst(
                 subscription => Ok(new SubscriptionResponse(subscription.Id, request.subscriptionType)),
+                error => Problem()
+            );
+        }
+
+        [HttpGet("{subscriptionId:guid}")]
+        public async Task<IActionResult> Get(Guid subscriptionId)
+        {
+            var query = new GetSubscriptionQuery(subscriptionId);
+
+            var getSubscriptionResult = await _mediator.Send(query);
+
+            return getSubscriptionResult.MatchFirst(
+                subscription => Ok(new SubscriptionResponse(
+                        subscription.Id,
+                        Enum.Parse<SubscriptionType>(subscription.SubscriptionType)
+                    )),
                 error => Problem()
             );
         }

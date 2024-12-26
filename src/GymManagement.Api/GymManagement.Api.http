@@ -12,3 +12,6 @@ Content-Type: application/json
   "admin": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
 }
 ###
+
+@subscriptionId=5ee005a2-cd86-4b92-ba7a-35e73a09820f
+GET {{GymManagement.Api_HostAddress}}/Subscriptions/{{subscriptionId}}
